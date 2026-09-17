@@ -14,14 +14,8 @@ export const voiceBotsIntegrations = {
   eyebrow: "Integrations",
   title: "Connects to everything your team already runs on",
   description:
-    "Automations run on n8n under the hood, so if n8n can talk to it, we can wire your voice bot into it — calendars, CRMs, email, and messaging today, with hundreds more tools available as you need them.",
+    "Automations run on n8n under the hood, so if it's in n8n's catalog, we can wire your voice bot into it — starting with the calendars, CRMs, and inboxes shown here, plus hundreds more tools as you need them.",
   cta: { label: "Explore integrations", href: "/#contact" },
-  categories: [
-    { label: "Calendar", icon: "calendar" },
-    { label: "CRM & Sales", icon: "briefcase" },
-    { label: "Email", icon: "mail" },
-    { label: "Comms & Messaging", icon: "message-circle" },
-  ],
 };
 
 export const voiceBotsWhy = [
