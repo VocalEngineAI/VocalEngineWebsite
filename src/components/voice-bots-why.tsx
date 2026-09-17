@@ -9,9 +9,7 @@ export function VoiceBotsWhy() {
   return (
     <section className="py-[var(--spacing-section-sm)]">
       <Container className="flex flex-col gap-10">
-        <div className="flex justify-center">
-          <Eyebrow>Why Voice Bots</Eyebrow>
-        </div>
+        <Eyebrow tone="dark">Why Voice Bots</Eyebrow>
 
         <div className="grid gap-6 sm:grid-cols-3">
           {voiceBotsWhy.map((item, i) => {
