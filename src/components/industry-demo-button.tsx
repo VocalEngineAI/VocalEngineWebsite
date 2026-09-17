@@ -24,10 +24,11 @@ export function IndustryDemoButton({ label, audioSrc }: { label: string; audioSr
       <button
         type="button"
         onClick={toggle}
-        className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-semibold text-ink transition-opacity hover:opacity-90"
+        aria-label={playing ? `Pause ${label} demo` : `Hear ${label} demo`}
+        className="inline-flex w-full items-center justify-center gap-2 whitespace-nowrap rounded-full bg-white px-5 py-3 text-sm font-semibold text-page-base transition-opacity hover:opacity-90"
       >
         {playing ? <Pause size={14} fill="currentColor" /> : <Play size={14} fill="currentColor" />}
-        {playing ? "Playing…" : `Hear ${label} demo`}
+        {playing ? "Playing…" : "Hear Demo"}
       </button>
       <audio
         ref={audioRef}
