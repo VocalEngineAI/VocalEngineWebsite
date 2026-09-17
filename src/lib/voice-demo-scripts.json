@@ -2,7 +2,7 @@
   {
     "slug": "customer-service",
     "label": "Customer Service",
-    "script": "Thanks for calling VocalEngineAI support, this is Ava. I can see your last order shipped yesterday and it's on track for Thursday delivery. Want me to text you the tracking link?"
+    "script": "Thanks for calling support, this is Ava. I can see your last order shipped yesterday and it's on track for Thursday delivery. Want me to text you the tracking link?"
   },
   {
     "slug": "appointment-setter",

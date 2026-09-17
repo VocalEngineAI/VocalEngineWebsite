@@ -44,8 +44,10 @@ export function VoiceDemoPlayer({
           {wave.map((h, j) => (
             <span
               key={j}
-              className={`w-[3px] rounded-full transition-colors ${playing ? "bg-lime/80" : "bg-on-dark-muted/50"}`}
-              style={{ height: `${h}px` }}
+              className={`wave-bar w-[3px] rounded-full transition-colors ${
+                playing ? "wave-bar-playing bg-lime/80" : "bg-on-dark-muted/50"
+              }`}
+              style={{ height: `${h}px`, animationDelay: playing ? `${(j % 5) * 110}ms` : undefined }}
             />
           ))}
         </div>
