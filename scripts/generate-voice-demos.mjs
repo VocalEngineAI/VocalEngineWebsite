@@ -1,7 +1,7 @@
 // One-time generator for the Voice Bots page's cached demo-call audio.
 //
 // Usage:
-//   node --env-file=.env.local scripts/generate-voice-demos.mjs
+//   node --env-file=.env scripts/generate-voice-demos.mjs
 //   (or) DEEPGRAM_API_KEY=... node scripts/generate-voice-demos.mjs
 //
 // This calls Deepgram's Aura TTS API once per script in
@@ -24,8 +24,8 @@ if (!API_KEY) {
   console.error(
     "Missing DEEPGRAM_API_KEY.\n\n" +
       "Run with:\n" +
-      "  node --env-file=.env.local scripts/generate-voice-demos.mjs\n" +
-      "(put DEEPGRAM_API_KEY=... in .env.local, which is gitignored)\n\n" +
+      "  node --env-file=.env scripts/generate-voice-demos.mjs\n" +
+      "(put DEEPGRAM_API_KEY=... in .env, which is gitignored)\n\n" +
       "or inline for a one-off run:\n" +
       "  DEEPGRAM_API_KEY=... node scripts/generate-voice-demos.mjs"
   );
