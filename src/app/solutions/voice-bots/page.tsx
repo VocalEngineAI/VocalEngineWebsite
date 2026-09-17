@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { VoiceBotsHero } from "@/components/voice-bots-hero";
 import { VoiceBotsWhy } from "@/components/voice-bots-why";
-import { VoiceBotsUseCases } from "@/components/voice-bots-use-cases";
 import { ProcessSection } from "@/components/process-section";
 import { WhyUsSection } from "@/components/why-us-section";
 import { CaseStudiesSection } from "@/components/case-studies-section";
@@ -20,7 +19,6 @@ export default function VoiceBotsPage() {
     <main>
       <VoiceBotsHero />
       <VoiceBotsWhy />
-      <VoiceBotsUseCases />
       <ProcessSection />
       <WhyUsSection />
       <CaseStudiesSection />
