@@ -1,0 +1,22 @@
+[
+  {
+    "slug": "healthcare",
+    "label": "Healthcare",
+    "script": "Hi, this is Ava from Sunrise Family Clinic. I'm calling to confirm your appointment tomorrow at 9 AM with Dr. Patel — would you like a text reminder an hour before?"
+  },
+  {
+    "slug": "call-center",
+    "label": "Call Center",
+    "script": "Thanks for holding. I can see you're calling about a billing issue on account ending in 4471 — let me pull that up and get this sorted for you right now."
+  },
+  {
+    "slug": "real-estate",
+    "label": "Real Estate",
+    "script": "Hi, thanks for your interest in the Maple Street listing. It's still available — I can book you a showing this Saturday at 11, does that work?"
+  },
+  {
+    "slug": "retail",
+    "label": "Retail",
+    "script": "Hi, I'm calling to let you know your order shipped this morning and should arrive by Friday. Would you like me to send the tracking link by text?"
+  }
+]

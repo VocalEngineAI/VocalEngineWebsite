@@ -3,6 +3,7 @@ import { VoiceBotsHero } from "@/components/voice-bots-hero";
 import { VoiceBotsWhy } from "@/components/voice-bots-why";
 import { VoiceBotsIntegrations } from "@/components/voice-bots-integrations";
 import { WhyUsSection } from "@/components/why-us-section";
+import { VoiceBotsIndustries } from "@/components/voice-bots-industries";
 import { CaseStudiesSection } from "@/components/case-studies-section";
 import { CtaBand } from "@/components/cta-band";
 import { FaqSection } from "@/components/faq-section";
@@ -21,6 +22,7 @@ export default function VoiceBotsPage() {
       <VoiceBotsWhy />
       <VoiceBotsIntegrations />
       <WhyUsSection />
+      <VoiceBotsIndustries />
       <CaseStudiesSection />
       <CtaBand />
       <FaqSection eyebrow="FAQ" title="Common questions about voice bots" faqs={voiceBotsFaqs} />

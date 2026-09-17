@@ -4,21 +4,28 @@
 //   node --env-file=.env scripts/generate-voice-demos.mjs
 //   (or) DEEPGRAM_API_KEY=... node scripts/generate-voice-demos.mjs
 //
+// Set FORCE=1 to regenerate files that already exist (by default, existing
+// mp3s are left alone so re-runs don't burn API credits re-doing old clips).
+//
 // This calls Deepgram's Aura TTS API once per script in
-// src/lib/voice-demo-scripts.json and writes the resulting mp3 files to
-// public/audio/voice-demos/. Nothing in the app itself calls Deepgram —
-// the site just plays these cached static files.
+// src/lib/voice-demo-scripts.json and src/lib/industry-demo-scripts.json,
+// and writes the resulting mp3 files to public/audio/voice-demos/. Nothing
+// in the app itself calls Deepgram — the site just plays these cached
+// static files.
 
-import { mkdir, readFile, writeFile } from "node:fs/promises";
+import { access, mkdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
 const ROOT = path.join(path.dirname(fileURLToPath(import.meta.url)), "..");
-const SCRIPTS_PATH = path.join(ROOT, "src", "lib", "voice-demo-scripts.json");
+const SCRIPT_FILES = ["voice-demo-scripts.json", "industry-demo-scripts.json"].map((f) =>
+  path.join(ROOT, "src", "lib", f)
+);
 const OUT_DIR = path.join(ROOT, "public", "audio", "voice-demos");
 
 const API_KEY = process.env.DEEPGRAM_API_KEY;
 const MODEL = process.env.DEEPGRAM_VOICE_MODEL || "aura-2-thalia-en";
+const FORCE = Boolean(process.env.FORCE);
 
 if (!API_KEY) {
   console.error(
@@ -30,6 +37,15 @@ if (!API_KEY) {
       "  DEEPGRAM_API_KEY=... node scripts/generate-voice-demos.mjs"
   );
   process.exit(1);
+}
+
+async function exists(p) {
+  try {
+    await access(p);
+    return true;
+  } catch {
+    return false;
+  }
 }
 
 async function synthesize(text) {
@@ -51,19 +67,26 @@ async function synthesize(text) {
 }
 
 async function main() {
-  const demos = JSON.parse(await readFile(SCRIPTS_PATH, "utf-8"));
+  const lists = await Promise.all(SCRIPT_FILES.map((f) => readFile(f, "utf-8").then(JSON.parse)));
+  const demos = lists.flat();
 
   await mkdir(OUT_DIR, { recursive: true });
 
   for (const demo of demos) {
+    const outPath = path.join(OUT_DIR, `${demo.slug}.mp3`);
+
+    if (!FORCE && (await exists(outPath))) {
+      console.log(`Skipping "${demo.label}" (${demo.slug}) — already generated. Set FORCE=1 to redo it.`);
+      continue;
+    }
+
     console.log(`Generating "${demo.label}" (${demo.slug})...`);
     const audio = await synthesize(demo.script);
-    const outPath = path.join(OUT_DIR, `${demo.slug}.mp3`);
     await writeFile(outPath, audio);
     console.log(`  -> ${path.relative(ROOT, outPath)} (${audio.length} bytes)`);
   }
 
-  console.log("\nDone. Commit the new files under public/audio/voice-demos/.");
+  console.log("\nDone. Commit any new/changed files under public/audio/voice-demos/.");
 }
 
 main().catch((err) => {
