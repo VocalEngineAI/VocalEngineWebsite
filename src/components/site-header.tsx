@@ -72,10 +72,10 @@ export function SiteHeader() {
         </nav>
 
         <div className="hidden items-center gap-3 md:flex">
-          <Button href="#contact" variant="outline">
+          <Button href="/#contact" variant="outline">
             Sign in
           </Button>
-          <Button href="#contact" variant="primary">
+          <Button href="/#contact" variant="primary">
             Book a call
           </Button>
         </div>
@@ -84,10 +84,10 @@ export function SiteHeader() {
           <div className="flex flex-col gap-6">
             <NavLinks variant="mobile" />
             <div className="flex flex-col gap-3">
-              <Button href="#contact" variant="outline">
+              <Button href="/#contact" variant="outline">
                 Sign in
               </Button>
-              <Button href="#contact" variant="primary">
+              <Button href="/#contact" variant="primary">
                 Book a call
               </Button>
             </div>

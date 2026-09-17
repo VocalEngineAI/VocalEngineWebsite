@@ -3,14 +3,14 @@ type NavItem = NavLink | { label: string; dropdown: NavLink[] };
 
 export const nav: { links: NavItem[] } = {
   links: [
-    { label: "Services", href: "#services" },
+    { label: "Services", href: "/#services" },
     {
       label: "Solutions",
-      dropdown: [{ label: "Voice Bots", href: "#voice-ai" }],
+      dropdown: [{ label: "Voice Bots", href: "/solutions/voice-bots" }],
     },
-    { label: "Work", href: "#work" },
-    { label: "Industries", href: "#industries" },
-    { label: "FAQ", href: "#faq" },
+    { label: "Work", href: "/#work" },
+    { label: "Industries", href: "/#industries" },
+    { label: "FAQ", href: "/#faq" },
   ],
 };
 

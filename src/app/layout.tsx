@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Geist, Inter, Reddit_Mono } from "next/font/google";
 import { PrismStreaks } from "@/components/prism-streaks";
+import { SiteHeader } from "@/components/site-header";
+import { SiteFooter } from "@/components/site-footer";
 import "./globals.css";
 
 const geist = Geist({
@@ -32,7 +34,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     >
       <body className="min-h-screen bg-page-base text-ink font-body">
         <PrismStreaks className="fixed inset-0 -z-10 h-screen w-screen pointer-events-none" />
+        <SiteHeader />
         {children}
+        <SiteFooter />
       </body>
     </html>
   );

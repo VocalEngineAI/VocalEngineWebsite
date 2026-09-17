@@ -10,7 +10,7 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 
 # VocalEngineAI marketing site
 
-Single-page Next.js marketing site for VocalEngineAI, an agency offering mobile app development, website development, AI automations, and AI voice/chat agents.
+Multi-page Next.js marketing site for VocalEngineAI, an agency offering mobile app development, website development, AI automations, and AI voice/chat agents.
 
 ## Commands
 
@@ -30,11 +30,13 @@ No test suite is configured.
 
 ## Architecture
 
-- Single route: `src/app/page.tsx` composes every landing-page section in order. There are no other routes.
-- `src/components/` — one file per section (`hero`, `services-grid`, `voice-ai-showcase`, `industries-section`, `case-studies-section`, `faq-section`, etc.), all Server Components by default. The only Client Component is `mobile-nav-toggle.tsx` (open/close state for the mobile menu) — even the FAQ accordion is plain server-rendered `<details>/<summary>`, no client JS.
+- Routes: `src/app/page.tsx` (homepage) and `src/app/solutions/voice-bots/page.tsx` (Voice Bots). `SiteHeader`/`SiteFooter` and the `PrismStreaks` canvas live in `src/app/layout.tsx`, not per-page, so every route gets them automatically — a new page only needs to export its own `<main>` content and, if it wants a different `<title>`/description, a `metadata` export.
+- Nav links (`src/lib/content.ts` → `nav`) use paths relative to the site root (`/#services`, `/solutions/voice-bots`), not bare hashes (`#services`) — the header renders on every route, so a bare hash would try to scroll within whatever page you're currently on instead of navigating home first. Section components with same-page-only anchors (e.g. `Hero`'s own buttons) can still use bare hashes since they only ever render on their own page.
+- `src/components/` — one file per section (`hero`, `services-grid`, `voice-ai-showcase`, `industries-section`, `case-studies-section`, `faq-section`, `voice-bots-hero`, `voice-bots-use-cases`, etc.), all Server Components by default. The only Client Components are `mobile-nav-toggle.tsx` (open/close state for the mobile menu) and `prism-streaks.tsx` — even the FAQ accordion and the nav's Solutions dropdown are plain server-rendered `<details>/<summary>`, no client JS.
+- Some section components are reused across pages with props for the parts that differ (e.g. `FaqSection` takes optional `eyebrow`/`title`/`faqs`, defaulting to the homepage's). `ProcessSection`, `WhyUsSection`, `CaseStudiesSection`, and `CtaBand` are reused as-is (no props) on `/solutions/voice-bots` since their content and id-based anchors (`#work`, `#contact`) are generic enough to hold up on any page.
 - `src/components/ui/` — shared primitives: `Container`, `Button`, `SectionHeading`, `Eyebrow` (badge).
-- `src/components/prism-streaks.tsx` — the only other Client Component. Mounted once, site-wide, in `src/app/layout.tsx` as a `fixed inset-0 -z-10` canvas behind every route — not per-section. It owns its own `requestAnimationFrame` loop, decoupled from React's render cycle. All tuning knobs (colors, speed, streak width, dust, exposure, etc.) are props with defaults — override at the single call site in `layout.tsx` rather than editing the shader.
-- `src/lib/content.ts` — all page copy and data (nav links, services, industries, case studies, FAQs, footer links) as typed arrays. Edit copy here, not inline in components.
+- `src/components/prism-streaks.tsx` — mounted once, site-wide, in `src/app/layout.tsx` as a `fixed inset-0 -z-10` canvas behind every route — not per-section. It owns its own `requestAnimationFrame` loop, decoupled from React's render cycle. All tuning knobs (colors, speed, streak width, dust, exposure, etc.) are props with defaults — override at the single call site in `layout.tsx` rather than editing the shader.
+- `src/lib/content.ts` — shared/homepage copy and data (nav links, services, industries, case studies, FAQs, footer links) as typed arrays. Page-specific content (currently `src/lib/voice-bots-content.ts`) lives in its own file per page instead of growing `content.ts` indefinitely — follow that pattern for the next page.
 - `src/app/globals.css` — design tokens defined via Tailwind v4 `@theme`: colors, fonts, radii, section spacing, and the h1/h2 type scale all live here as CSS custom properties (`--color-*`, `--font-*`, `--radius-*`, `--spacing-section-*`, `--text-*`). Components consume them through the generated utility classes (`bg-primary`, `text-ink`, `py-[var(--spacing-section-sm)]`, etc.) rather than hardcoded hex/px values — keep new UI on these tokens instead of introducing one-off colors or spacing.
 
 ## Design system origin
@@ -55,3 +57,4 @@ The site is dark-themed site-wide so the Prism Streaks canvas (see above) stays 
 - Case studies and stats in `src/lib/content.ts` are illustrative placeholders, not real client data — keep new additions in the same clearly-illustrative style unless told otherwise.
 - The logo (`src/components/logo.tsx`) is a placeholder inline-SVG monogram + wordmark. Swap in the real logo asset (e.g. as `public/logo.svg` and update `Logo`) once it's available.
 - `integrations` in `src/lib/content.ts` (rendered by `integrations-section.tsx`) lists real third-party tool names (Salesforce, HubSpot, Twilio, Zapier, etc.) as plain text, grouped by category — no logos, and the copy frames this as "connects into" rather than an official/certified partnership, since none exists. Keep that framing if you edit this list.
+- `concept/` (repo root) holds reference screenshots the user drops in for design direction on upcoming pages (not build input, not served by the app) — check it before starting a new page in case there's a reference image already waiting there.

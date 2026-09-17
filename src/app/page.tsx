@@ -1,4 +1,3 @@
-import { SiteHeader } from "@/components/site-header";
 import { Hero } from "@/components/hero";
 import { ProcessSection } from "@/components/process-section";
 import { ServicesGrid } from "@/components/services-grid";
@@ -8,24 +7,19 @@ import { WhyUsSection } from "@/components/why-us-section";
 import { CaseStudiesSection } from "@/components/case-studies-section";
 import { CtaBand } from "@/components/cta-band";
 import { FaqSection } from "@/components/faq-section";
-import { SiteFooter } from "@/components/site-footer";
 
 export default function Home() {
   return (
-    <>
-      <SiteHeader />
-      <main>
-        <Hero />
-        <ServicesGrid />
-        <ProcessSection />
-        <VoiceAiShowcase />
-        <IndustriesSection />
-        <WhyUsSection />
-        <CaseStudiesSection />
-        <CtaBand />
-        <FaqSection />
-      </main>
-      <SiteFooter />
-    </>
+    <main>
+      <Hero />
+      <ServicesGrid />
+      <ProcessSection />
+      <VoiceAiShowcase />
+      <IndustriesSection />
+      <WhyUsSection />
+      <CaseStudiesSection />
+      <CtaBand />
+      <FaqSection />
+    </main>
   );
 }
