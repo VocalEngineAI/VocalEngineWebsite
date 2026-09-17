@@ -1,6 +1,6 @@
 import { Clock, MessageCircle, Zap } from "lucide-react";
 import { Container } from "./ui/container";
-import { SectionHeading } from "./ui/section-heading";
+import { Eyebrow } from "./ui/badge";
 import { voiceBotsWhy } from "@/lib/voice-bots-content";
 
 const icons = [Clock, MessageCircle, Zap];
@@ -9,7 +9,9 @@ export function VoiceBotsWhy() {
   return (
     <section className="py-[var(--spacing-section-sm)]">
       <Container className="flex flex-col gap-10">
-        <SectionHeading align="center" title="Why voice bots" />
+        <div className="flex justify-center">
+          <Eyebrow>Why Voice Bots</Eyebrow>
+        </div>
 
         <div className="grid gap-6 sm:grid-cols-3">
           {voiceBotsWhy.map((item, i) => {
