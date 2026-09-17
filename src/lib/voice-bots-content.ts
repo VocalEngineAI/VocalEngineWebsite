@@ -6,7 +6,31 @@ export const voiceBotsHero = {
   demoCard: {
     title: "Hear it in action",
     subtitle: "Live agent demos",
-    demos: ["Customer Service", "Appointment Setter", "Answering Service", "Inbound Calls"],
+    demos: [
+      {
+        label: "Customer Service",
+        script:
+          "Thanks for calling VocalEngineAI support, this is Ava. I can see your last order shipped yesterday and it's on track for Thursday delivery. Want me to text you the tracking link?",
+        audio: null,
+      },
+      {
+        label: "Appointment Setter",
+        script:
+          "Hi, this is Ava calling to confirm your consultation for Thursday at 2 PM. I do have an opening Wednesday at 10 AM if that works better — otherwise, Thursday's all set.",
+        audio: null,
+      },
+      {
+        label: "Answering Service",
+        script:
+          "Thanks for calling Riverside Dental. We're closed right now, but I can take a message or help you book an appointment — which would you like to do?",
+        audio: null,
+      },
+      {
+        label: "Inbound Calls",
+        script: "Got it, you're looking for billing support. Let me transfer you to that team right now — one moment, please.",
+        audio: null,
+      },
+    ],
   },
 };
 

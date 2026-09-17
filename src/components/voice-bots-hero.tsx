@@ -43,7 +43,7 @@ export function VoiceBotsHero() {
           <div className="flex flex-col gap-3">
             {voiceBotsHero.demoCard.demos.map((demo, i) => (
               <div
-                key={demo}
+                key={demo.label}
                 className="flex items-center gap-3 rounded-[var(--radius-md)] border border-white/10 bg-white/[0.03] px-4 py-3"
               >
                 <span
@@ -53,7 +53,7 @@ export function VoiceBotsHero() {
                   <Play size={13} fill="currentColor" />
                 </span>
                 <div className="flex flex-1 flex-col gap-1.5 overflow-hidden">
-                  <p className="truncate text-sm font-medium text-on-dark">{demo}</p>
+                  <p className="truncate text-sm font-medium text-on-dark">{demo.label}</p>
                   <div className="flex items-end gap-[3px]" aria-hidden="true">
                     {WAVE_PATTERNS[i % WAVE_PATTERNS.length].map((h, j) => (
                       <span key={j} className="w-[3px] rounded-full bg-on-dark-muted/50" style={{ height: `${h}px` }} />
