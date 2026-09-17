@@ -14,7 +14,7 @@ export function CaseStudiesSection() {
 
         <div className="grid gap-6 md:grid-cols-2">
           {caseStudies.map((study) => (
-            <div key={study.client} className="flex flex-col gap-6 rounded-[var(--radius-xl)] border border-border p-7">
+            <div key={study.client} className="flex flex-col gap-6 rounded-[var(--radius-xl)] border border-border bg-bg p-7">
               <div className="flex flex-col gap-1">
                 <h3 className="font-display text-lg font-semibold text-ink">{study.client}</h3>
                 <p className="font-mono text-xs uppercase tracking-widest text-muted">{study.segment}</p>

@@ -33,13 +33,22 @@ No test suite is configured.
 - Single route: `src/app/page.tsx` composes every landing-page section in order. There are no other routes.
 - `src/components/` — one file per section (`hero`, `services-grid`, `voice-ai-showcase`, `industries-section`, `case-studies-section`, `faq-section`, etc.), all Server Components by default. The only Client Component is `mobile-nav-toggle.tsx` (open/close state for the mobile menu) — even the FAQ accordion is plain server-rendered `<details>/<summary>`, no client JS.
 - `src/components/ui/` — shared primitives: `Container`, `Button`, `SectionHeading`, `Eyebrow` (badge).
-- `src/components/prism-streaks.tsx` — the only other Client Component. Renders a full-bleed `<canvas>` (`absolute inset-0`, `pointer-events-none`) behind the hero's content; mounted only inside `hero.tsx`, not site-wide, since it's designed for a dark background and the rest of the page is light. All tuning knobs (colors, speed, streak width, dust, exposure, etc.) are props with defaults — override per-instance rather than editing the shader.
+- `src/components/prism-streaks.tsx` — the only other Client Component. Mounted once, site-wide, in `src/app/layout.tsx` as a `fixed inset-0 -z-10` canvas behind every route — not per-section. It owns its own `requestAnimationFrame` loop, decoupled from React's render cycle. All tuning knobs (colors, speed, streak width, dust, exposure, etc.) are props with defaults — override at the single call site in `layout.tsx` rather than editing the shader.
 - `src/lib/content.ts` — all page copy and data (nav links, services, industries, case studies, FAQs, footer links) as typed arrays. Edit copy here, not inline in components.
 - `src/app/globals.css` — design tokens defined via Tailwind v4 `@theme`: colors, fonts, radii, section spacing, and the h1/h2 type scale all live here as CSS custom properties (`--color-*`, `--font-*`, `--radius-*`, `--spacing-section-*`, `--text-*`). Components consume them through the generated utility classes (`bg-primary`, `text-ink`, `py-[var(--spacing-section-sm)]`, etc.) rather than hardcoded hex/px values — keep new UI on these tokens instead of introducing one-off colors or spacing.
 
 ## Design system origin
 
-The color palette, type scale, spacing scale, and section rhythm were reverse-engineered from a reference SaaS site's published CSS (see the comment at the top of `globals.css`) and reimplemented with original values and naming. Key colors: primary `#5b0dd5`, accent `#9747ff`, lime highlight `#b5ff90`, dark section background `#110229`. All copy, section content, and case studies are original to VocalEngineAI — not copied from the reference site.
+The color palette, type scale, spacing scale, and section rhythm were reverse-engineered from a reference SaaS site's published CSS (see the comment at the top of `globals.css`) and reimplemented with original values and naming. Key colors: primary `#5b0dd5`, accent `#9747ff`, lime highlight `#b5ff90`. All copy, section content, and case studies are original to VocalEngineAI — not copied from the reference site.
+
+## Dark theme / Prism Streaks background
+
+The site is dark-themed site-wide so the Prism Streaks canvas (see above) stays visible behind every section, not just the hero. This drives how the color tokens work in `globals.css`:
+
+- `--color-page-base` is the **only** solid/opaque color — it's `<body>`'s fallback paint before the canvas mounts. Don't use it for anything else.
+- `--color-bg`, `--color-bg-subtle`, `--color-dark`, `--color-border`, `--color-border-strong`, `--color-primary-soft`, and `--color-accent-soft` are all baked with an alpha channel (8-digit hex) so that any card, chip, or section stripe using them reads as **tinted glass over the animation**, not an opaque fill. When adding new surfaces, reuse these tokens (or add a new alpha-baked one) rather than an opaque color — an opaque section background would black out the canvas.
+- Sections with no explicit `bg-*` class are fully transparent, letting the canvas show through directly (e.g. the hero, and the gaps between cards in `services-grid.tsx` / `industries-section.tsx`). Only add a `bg-*` class to a section or card when its content needs the contrast.
+- Text tokens (`--color-ink`, `--color-ink-soft`, `--color-muted`, `--color-on-dark`, `--color-on-dark-muted`) are all light colors now; there's no separate "light theme" text path left in the codebase.
 
 ## Content notes
 

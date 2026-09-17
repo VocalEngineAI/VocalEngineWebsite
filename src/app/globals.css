@@ -10,24 +10,33 @@
   --font-body: var(--font-geist), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-reddit-mono), ui-monospace, monospace;
 
-  --color-ink: #14121f;
-  --color-ink-soft: #4b4560;
-  --color-muted: #6b6a80;
-  --color-bg: #ffffff;
-  --color-bg-subtle: #f9f9fb;
-  --color-surface-alt: #f4f1fb;
-  --color-border: #e5e1f0;
-  --color-border-strong: #d6cfe8;
+  /*
+    Site-wide dark theme: the Prism Streaks WebGL canvas is fixed behind the
+    whole page (see layout.tsx), so surface colors below are intentionally
+    translucent — they sit as tinted glass over the animation rather than
+    opaque fills. --color-page-base is the one solid/opaque value, used only
+    as <body>'s fallback paint before the canvas mounts.
+  */
+  --color-page-base: #0a0616;
+
+  --color-ink: #f5f2fb;
+  --color-ink-soft: #cabfe8;
+  --color-muted: #a99ecb;
+  --color-bg: #0b0620e6;
+  --color-bg-subtle: #170b34e6;
+  --color-surface-alt: #ffffff0d;
+  --color-border: #ffffff26;
+  --color-border-strong: #ffffff40;
 
   --color-primary: #5b0dd5;
   --color-primary-hover: #4a0bb0;
-  --color-primary-soft: #f2effe;
+  --color-primary-soft: #5b0dd540;
   --color-accent: #9747ff;
-  --color-accent-soft: #f5edff;
+  --color-accent-soft: #9747ff40;
   --color-lime: #b5ff90;
 
-  --color-dark: #110229;
-  --color-dark-soft: #241340;
+  --color-dark: #05020ff0;
+  --color-dark-soft: #170b34e6;
   --color-on-dark: #ffffff;
   --color-on-dark-muted: #c9c0e0;
 
@@ -75,7 +84,7 @@
 }
 
 body {
-  background: var(--color-bg);
+  background: var(--color-page-base);
   color: var(--color-ink);
   font-family: var(--font-body);
 }

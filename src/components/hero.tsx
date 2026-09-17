@@ -2,15 +2,12 @@ import { PhoneCall, Sparkles } from "lucide-react";
 import { Container } from "./ui/container";
 import { Eyebrow } from "./ui/badge";
 import { Button } from "./ui/button";
-import { PrismStreaks } from "./prism-streaks";
 import { heroStats } from "@/lib/content";
 
 export function Hero() {
   return (
-    <section className="relative overflow-hidden bg-dark pb-20 pt-16 md:pb-28 md:pt-24">
-      <PrismStreaks />
-
-      <Container className="relative z-10 flex flex-col items-center gap-8 text-center">
+    <section className="relative pb-20 pt-16 md:pb-28 md:pt-24">
+      <Container className="relative flex flex-col items-center gap-8 text-center">
         <Eyebrow tone="dark">
           <Sparkles size={13} /> Apps · Websites · AI Voice &amp; Chat Agents
         </Eyebrow>

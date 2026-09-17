@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Inter, Reddit_Mono } from "next/font/google";
+import { PrismStreaks } from "@/components/prism-streaks";
 import "./globals.css";
 
 const geist = Geist({
@@ -29,7 +30,10 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="en"
       className={`${geist.variable} ${inter.variable} ${redditMono.variable} antialiased`}
     >
-      <body className="min-h-screen bg-bg text-ink font-body">{children}</body>
+      <body className="min-h-screen bg-page-base text-ink font-body">
+        <PrismStreaks className="fixed inset-0 -z-10 h-screen w-screen pointer-events-none" />
+        {children}
+      </body>
     </html>
   );
 }
