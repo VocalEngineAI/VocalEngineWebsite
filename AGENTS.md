@@ -54,3 +54,4 @@ The site is dark-themed site-wide so the Prism Streaks canvas (see above) stays 
 
 - Case studies and stats in `src/lib/content.ts` are illustrative placeholders, not real client data — keep new additions in the same clearly-illustrative style unless told otherwise.
 - The logo (`src/components/logo.tsx`) is a placeholder inline-SVG monogram + wordmark. Swap in the real logo asset (e.g. as `public/logo.svg` and update `Logo`) once it's available.
+- `integrations` in `src/lib/content.ts` (rendered by `integrations-section.tsx`) lists real third-party tool names (Salesforce, HubSpot, Twilio, Zapier, etc.) as plain text, grouped by category — no logos, and the copy frames this as "connects into" rather than an official/certified partnership, since none exists. Keep that framing if you edit this list.

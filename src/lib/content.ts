@@ -143,15 +143,25 @@ export const benefits = [
   },
 ];
 
-export const integrationCategories = [
-  "CRM & Sales",
-  "Calendars & Scheduling",
-  "Helpdesk & Support",
-  "Payments & Billing",
-  "SMS & Messaging",
-  "Marketing Automation",
-  "Analytics",
-  "Internal Tools & APIs",
+export const integrations = [
+  { category: "Calendars", tools: ["Cal.com", "Google Calendar", "Microsoft Calendar"] },
+  {
+    category: "Contact Center (CCaaS)",
+    tools: ["8x8", "Five9", "RingCentral", "Genesys", "OpenPhone", "Dialpad", "3CX", "JustCall", "CloudTalk", "Cisco", "Avaya", "Intermedia"],
+  },
+  { category: "CRM", tools: ["GoHighLevel", "Zoho", "Salesforce", "Freshworks", "ActiveCampaign", "Monday.com", "Pipedrive", "HubSpot"] },
+  {
+    category: "Vertical CRM",
+    tools: ["Jobber", "Follow Up Boss", "Housecall Pro", "Dentrix", "Velocify", "Practice Better", "ServiceTitan", "Bitrix24", "AthenaOne"],
+  },
+  { category: "Sales", tools: ["Clay", "Apollo.io", "Gong", "Outreach"] },
+  { category: "Telephony", tools: ["Twilio", "Telnyx", "Vonage", "Asterisk", "GoTo", "Plivo", "Ooma"] },
+  { category: "Connectors", tools: ["Zapier", "Make", "ActivePieces"] },
+  { category: "Developer Tools", tools: ["Bubble", "n8n", "Azure"] },
+  { category: "Customer Support", tools: ["Intercom", "Zendesk"] },
+  { category: "AI", tools: ["ElevenLabs", "OpenAI", "Anthropic"] },
+  { category: "Commerce & Payments", tools: ["Stripe", "Shopify"] },
+  { category: "Productivity", tools: ["Airtable"] },
 ];
 
 export const caseStudies = [

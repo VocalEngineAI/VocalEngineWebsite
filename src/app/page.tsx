@@ -5,7 +5,7 @@ import { ServicesGrid } from "@/components/services-grid";
 import { VoiceAiShowcase } from "@/components/voice-ai-showcase";
 import { IndustriesSection } from "@/components/industries-section";
 import { WhyUsSection } from "@/components/why-us-section";
-import { IntegrationsStrip } from "@/components/integrations-strip";
+import { IntegrationsSection } from "@/components/integrations-section";
 import { CaseStudiesSection } from "@/components/case-studies-section";
 import { CtaBand } from "@/components/cta-band";
 import { FaqSection } from "@/components/faq-section";
@@ -17,12 +17,12 @@ export default function Home() {
       <SiteHeader />
       <main>
         <Hero />
-        <IntegrationsStrip />
         <ServicesGrid />
         <ProcessSection />
         <VoiceAiShowcase />
         <IndustriesSection />
         <WhyUsSection />
+        <IntegrationsSection />
         <CaseStudiesSection />
         <CtaBand />
         <FaqSection />
