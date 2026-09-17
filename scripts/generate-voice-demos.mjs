@@ -18,7 +18,7 @@ const SCRIPTS_PATH = path.join(ROOT, "src", "lib", "voice-demo-scripts.json");
 const OUT_DIR = path.join(ROOT, "public", "audio", "voice-demos");
 
 const API_KEY = process.env.DEEPGRAM_API_KEY;
-const MODEL = process.env.DEEPGRAM_VOICE_MODEL || "aura-asteria-en";
+const MODEL = process.env.DEEPGRAM_VOICE_MODEL || "aura-2-thalia-en";
 
 if (!API_KEY) {
   console.error(
