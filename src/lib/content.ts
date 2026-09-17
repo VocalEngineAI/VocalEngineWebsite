@@ -1,7 +1,13 @@
-export const nav = {
+type NavLink = { label: string; href: string };
+type NavItem = NavLink | { label: string; dropdown: NavLink[] };
+
+export const nav: { links: NavItem[] } = {
   links: [
     { label: "Services", href: "#services" },
-    { label: "Voice & Chat AI", href: "#voice-ai" },
+    {
+      label: "Solutions",
+      dropdown: [{ label: "Voice Bots", href: "#voice-ai" }],
+    },
     { label: "Work", href: "#work" },
     { label: "Industries", href: "#industries" },
     { label: "FAQ", href: "#faq" },
