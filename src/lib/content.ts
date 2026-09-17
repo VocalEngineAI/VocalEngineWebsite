@@ -8,13 +8,6 @@ export const nav = {
   ],
 };
 
-export const heroStats = [
-  { value: "120+", label: "Products shipped" },
-  { value: "40+", label: "AI agents deployed" },
-  { value: "2.8M+", label: "Automated conversations" },
-  { value: "99.9%", label: "Agent uptime" },
-];
-
 export const process = [
   {
     step: "01",

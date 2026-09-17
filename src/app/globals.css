@@ -103,3 +103,23 @@ body {
 .balance {
   text-wrap: balance;
 }
+
+.blink-text {
+  animation: blink-fade 1.6s ease-in-out infinite;
+}
+
+@keyframes blink-fade {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.15;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .blink-text {
+    animation: none;
+  }
+}
