@@ -5,7 +5,6 @@ import { ServicesGrid } from "@/components/services-grid";
 import { VoiceAiShowcase } from "@/components/voice-ai-showcase";
 import { IndustriesSection } from "@/components/industries-section";
 import { WhyUsSection } from "@/components/why-us-section";
-import { IntegrationsSection } from "@/components/integrations-section";
 import { CaseStudiesSection } from "@/components/case-studies-section";
 import { CtaBand } from "@/components/cta-band";
 import { FaqSection } from "@/components/faq-section";
@@ -22,7 +21,6 @@ export default function Home() {
         <VoiceAiShowcase />
         <IndustriesSection />
         <WhyUsSection />
-        <IntegrationsSection />
         <CaseStudiesSection />
         <CtaBand />
         <FaqSection />
