@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "generate:voice-demos": "node --env-file-if-exists=.env.local scripts/generate-voice-demos.mjs"
   },
   "dependencies": {
     "lucide-react": "^1.47.0",
