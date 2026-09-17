@@ -26,12 +26,14 @@ No test suite is configured.
 - Next.js 16 (App Router, Turbopack), React 19, TypeScript, Tailwind CSS v4
 - `lucide-react` for icons — this installed version has dropped brand/social icons (`Linkedin`, `Twitter`, `Youtube`, etc.); the footer uses plain text links instead of logo icons
 - Fonts loaded via `next/font/google` in `src/app/layout.tsx`: Geist (body), Inter (headings/display), Reddit Mono (eyebrows/labels/mono text)
+- `three` for the hero's WebGL background (`src/components/prism-streaks.tsx`) — a standalone fragment-shader effect, decoupled from React's render cycle (its own `requestAnimationFrame` loop, set up/torn down entirely inside one `useEffect`)
 
 ## Architecture
 
 - Single route: `src/app/page.tsx` composes every landing-page section in order. There are no other routes.
 - `src/components/` — one file per section (`hero`, `services-grid`, `voice-ai-showcase`, `industries-section`, `case-studies-section`, `faq-section`, etc.), all Server Components by default. The only Client Component is `mobile-nav-toggle.tsx` (open/close state for the mobile menu) — even the FAQ accordion is plain server-rendered `<details>/<summary>`, no client JS.
 - `src/components/ui/` — shared primitives: `Container`, `Button`, `SectionHeading`, `Eyebrow` (badge).
+- `src/components/prism-streaks.tsx` — the only other Client Component. Renders a full-bleed `<canvas>` (`absolute inset-0`, `pointer-events-none`) behind the hero's content; mounted only inside `hero.tsx`, not site-wide, since it's designed for a dark background and the rest of the page is light. All tuning knobs (colors, speed, streak width, dust, exposure, etc.) are props with defaults — override per-instance rather than editing the shader.
 - `src/lib/content.ts` — all page copy and data (nav links, services, industries, case studies, FAQs, footer links) as typed arrays. Edit copy here, not inline in components.
 - `src/app/globals.css` — design tokens defined via Tailwind v4 `@theme`: colors, fonts, radii, section spacing, and the h1/h2 type scale all live here as CSS custom properties (`--color-*`, `--font-*`, `--radius-*`, `--spacing-section-*`, `--text-*`). Components consume them through the generated utility classes (`bg-primary`, `text-ink`, `py-[var(--spacing-section-sm)]`, etc.) rather than hardcoded hex/px values — keep new UI on these tokens instead of introducing one-off colors or spacing.
 
